@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>თერჯოლის მცოდნე</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="loading" class="screen">მონაცემები იტვირთება...</div>
+        
+        <div id="map-screen" class="screen" style="display: none;">
+            <h2 id="level-title">ეტაპი 1: თერჯოლის მერია</h2>
+            <div id="map-visual">
+                <img src="map.png" alt="თერჯოლის რუკა" style="width: 100%; border-radius: 10px;">
+                <p>პერსონაჟი იმყოფება მოცემულ ლოკაციაზე. მზად ხარ კითხვებისთვის?</p>
+            </div>
+            <button id="start-level-btn" onclick="startLevelQuestions()">დაწყება</button>
+        </div>
+
+        <div id="game-content" class="screen" style="display: none;">
+            <div id="location-header">
+                <h2>ლოკაცია: <span id="location-name"></span></h2>
+                <p>კითხვა <span id="current-q-num">1</span> / <span id="total-q-num">10</span></p>
+            </div>
+            
+            <div id="question-box">
+                <p id="question-text"></p>
+            </div>
+            
+            <div id="options-container"></div>
+            
+            <div id="controls">
+                <button id="hint-btn" onclick="showHint()">მინიშნება 🔍</button>
+            </div>
+            
+            <div id="score-board">
+                <p>საერთო ქულა: <span id="score">0</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
