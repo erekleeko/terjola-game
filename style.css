@@ -1,0 +1,110 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a; 
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    width: 100%; height: 100vh; 
+    display: flex; justify-content: center; align-items: center; position: relative;
+}
+
+.screen { width: 100%; max-width: 700px; }
+
+#loading { color: white; text-align: center; }
+
+/* რეგისტრაციის ეკრანი */
+#welcome-screen {
+    display: flex; justify-content: center; align-items: center;
+}
+
+.welcome-box {
+    background: #fffdf9; padding: 40px; border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); text-align: center;
+    border: 2px solid #8b5a2b; width: 90%;
+}
+
+#player-name {
+    width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #a67c52;
+    border-radius: 8px; font-size: 16px; text-align: center;
+}
+
+#auth-btn {
+    background-color: #8b5a2b; color: white; border: none; padding: 15px 30px;
+    font-size: 18px; border-radius: 8px; cursor: pointer; transition: 0.3s; width: 100%;
+}
+
+#auth-btn:hover { background-color: #5a3a18; }
+
+/* ინტროს სტილები */
+#intro-screen {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('map.png'); background-size: cover; background-position: center;
+    display: flex; justify-content: center; align-items: center; z-index: 10;
+}
+
+.intro-overlay {
+    background-color: rgba(0, 0, 0, 0.75); padding: 40px; border-radius: 15px;
+    text-align: center; max-width: 600px; width: 90%; color: #f4e8d1; 
+    border: 2px solid #8b5a2b;
+}
+
+#intro-text {
+    font-size: 22px; line-height: 1.6; min-height: 120px; font-weight: bold;
+}
+
+#start-journey-btn {
+    background-color: #ffd700; color: #333; border: none; padding: 15px 40px;
+    font-size: 20px; font-weight: bold; border-radius: 8px; cursor: pointer;
+    margin-top: 20px; transition: 0.3s;
+}
+
+#start-journey-btn:hover { background-color: #e6c200; transform: scale(1.05); }
+
+/* რუკა და პერსონაჟი */
+#map-screen, #game-content {
+    background: #fffdf9; padding: 30px; border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); width: 90%; text-align: center;
+    border: 2px solid #8b5a2b; z-index: 20;
+}
+
+#map-visual { position: relative; margin-bottom: 15px; }
+
+#character-img {
+    position: absolute;
+    width: 80px; /* პერსონაჟის ზომა */
+    height: auto;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.6)); 
+    /* ეს ხაზი უზრუნველყოფს პერსონაჟის გლუვ სრიალს ახალ ლოკაციაზე! */
+    transition: all 1.5s ease-in-out;
+    animation: bounce 2s infinite ease-in-out;
+    /* საწყისი პოზიცია (დაიმალოს სანამ კოორდინატებს მიიღებს) */
+    opacity: 0; 
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ღილაკები */
+.option-btn {
+    display: block; width: 100%; margin: 12px 0; padding: 15px;
+    border: 2px solid #a67c52; background-color: #fff; border-radius: 8px;
+    cursor: pointer; font-size: 16px; font-weight: bold; color: #5a3a18; transition: 0.3s;
+}
+.option-btn:hover { background-color: #a67c52; color: white; }
+
+#start-level-btn, #hint-btn {
+    background-color: #8b5a2b; color: white; border: none; padding: 12px 25px;
+    font-size: 16px; border-radius: 8px; cursor: pointer; margin-top: 15px; transition: 0.3s;
+}
+#start-level-btn:hover, #hint-btn:hover { background-color: #5a3a18; }
+#score-board { margin-top: 20px; font-size: 18px; font-weight: bold; color: #8b5a2b; }
