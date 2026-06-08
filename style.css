@@ -1,0 +1,160 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a; 
+    color: #333; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh; 
+    margin: 0;
+}
+
+#game-container {
+    width: 100%; 
+    height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative;
+}
+
+.screen { width: 95%; max-width: 750px; }
+#map-screen { max-width: 950px; }
+#loading { color: white; text-align: center; }
+
+/* რეგისტრაცია და დაფები */
+.welcome-box {
+    background: #fffdf9; 
+    padding: 40px; 
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); 
+    text-align: center;
+    border: 2px solid #8b5a2b; 
+    margin: 0 auto;
+}
+
+#player-name {
+    width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #a67c52;
+    border-radius: 8px; font-size: 16px; text-align: center;
+}
+
+#auth-btn {
+    background-color: #8b5a2b; color: white; border: none; padding: 15px 30px;
+    font-size: 18px; border-radius: 8px; cursor: pointer; transition: 0.3s; width: 100%;
+}
+#auth-btn:hover { background-color: #5a3a18; }
+
+/* ინტრო */
+#intro-screen {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: 100%;
+    background-image: url('map.png'); background-size: cover; background-position: center;
+    display: flex; justify-content: center; align-items: center; z-index: 10;
+}
+
+.intro-overlay {
+    background-color: rgba(0, 0, 0, 0.75); padding: 40px; border-radius: 15px;
+    text-align: center; max-width: 650px; width: 90%; color: #f4e8d1; border: 2px solid #8b5a2b;
+}
+
+#intro-text { font-size: 22px; line-height: 1.6; min-height: 120px; font-weight: bold; }
+
+#start-journey-btn {
+    background-color: #ffd700; color: #333; border: none; padding: 15px 40px;
+    font-size: 20px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 20px; transition: 0.3s;
+}
+#start-journey-btn:hover { background-color: #e6c200; transform: scale(1.05); }
+
+/* რუკა და პერსონაჟი */
+#map-screen, #game-content {
+    background: #fffdf9; padding: 30px; border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5); text-align: center; border: 2px solid #8b5a2b; z-index: 20;
+}
+
+#map-visual { position: relative; margin-bottom: 15px; width: 100%; }
+#map-visual img { width: 100%; border-radius: 10px; border: 2px solid #8b5a2b; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+/* --- განახლებული პერსონაჟის სტილი --- */
+#character-img {
+    position: absolute; 
+    width: 45px; /* დავაპატარავეთ პერსონაჟი */
+    height: auto; 
+    border: none; 
+    box-shadow: none;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.6)); 
+    transition: top 1.5s ease-in-out, left 1.5s ease-in-out; /* რბილი მოძრაობა ლოკაციებს შორის */
+    animation: bounce 2s infinite ease-in-out; 
+    opacity: 0; 
+    z-index: 5;
+    pointer-events: none; /* რომ რუკაზე სხვა რამეზე დაკლიკებაში არ შეგვიშალოს ხელი */
+}
+
+/* ანიმაცია ჭკვიანი ცენტრირებით (მარცხნივ 50% და ზემოთ 100%), რათა ფეხებით დადგეს კოორდინატზე */
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, -100%); }
+    50% { transform: translate(-50%, calc(-100% - 8px)); }
+}
+
+/* ღილაკები და ლიდერბორდის სია */
+.option-btn {
+    display: block; width: 100%; margin: 12px 0; padding: 15px; border: 2px solid #a67c52;
+    background-color: #fff; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; color: #5a3a18; transition: 0.3s;
+}
+.option-btn:hover { background-color: #a67c52; color: white; }
+
+#start-level-btn, #hint-btn {
+    background-color: #8b5a2b; color: white; border: none; padding: 12px 25px;
+    font-size: 16px; border-radius: 8px; cursor: pointer; margin-top: 15px; transition: 0.3s;
+}
+#start-level-btn:hover, #hint-btn:hover { background-color: #5a3a18; }
+
+#score-board { margin-top: 20px; font-size: 18px; font-weight: bold; color: #8b5a2b; }
+
+.leaderboard-item {
+    display: flex; justify-content: space-between; padding: 10px;
+    border-bottom: 1px solid #d9c5a0; font-size: 16px; font-weight: 500;
+}
+.leaderboard-item:last-child { border-bottom: none; }
+/* --- ვიზუალური უკუკავშირი კითხვებზე --- */
+.option-btn {
+    display: block; width: 100%; margin: 12px 0; padding: 15px; border: 2px solid #a67c52;
+    background-color: #fff; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; color: #5a3a18; transition: 0.3s;
+}
+
+.option-btn:hover { 
+    background-color: #a67c52; color: white; 
+}
+
+/* მწვანე ფერი სწორი პასუხისთვის */
+.option-btn.correct {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border-color: #4CAF50 !important;
+    transform: scale(1.02);
+}
+
+/* წითელი ფერი არასწორი პასუხისთვის */
+.option-btn.wrong {
+    background-color: #f44336 !important;
+    color: white !important;
+    border-color: #f44336 !important;
+    animation: shake 0.4s;
+}
+
+/* არასწორ პასუხზე შერყევის ანიმაცია (Shake effect) */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* პერსონაჟის რესპონსიულობა მობილურისთვის */
+@media (max-width: 600px) {
+    #character-img {
+        width: 35px; /* მობილურში ოდნავ დაპატარავდება, რომ რუკა არ დაფაროს */
+    }
+    #intro-text { font-size: 18px; }
+}
